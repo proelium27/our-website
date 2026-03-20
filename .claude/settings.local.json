@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx:*)",
+      "Read(//Users/calebmeyer/.nvm/versions/**)",
+      "Read(//Users/calebmeyer/.volta/tools/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/local/bin/**)",
+      "Bash(brew list:*)",
+      "Read(//Users/calebmeyer/**)",
+      "Read(//Users/calebmeyer/.nvm/**)",
+      "Read(//usr/local/lib/**)",
+      "Read(//usr/**)",
+      "Bash(echo $PATH)",
+      "Bash(npm --version)",
+      "Bash(mkdir -p /tmp/next-scaffold)",
+      "Read(//tmp/**)",
+      "Read(//private/tmp/next-scaffold/**)",
+      "Bash(rm -rf /tmp/next-scaffold)",
+      "Skill(update-config)",
+      "Bash(mkdir /tmp/next-scaffold)",
+      "Bash(cp:*)"
+    ]
+  }
+}
