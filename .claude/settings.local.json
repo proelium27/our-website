@@ -26,7 +26,8 @@
       "Bash(cp \"/Users/calebmeyer/Downloads/ChatGPT Image Mar 21, 2026, 10_00_55 AM.png\" /Users/calebmeyer/Downloads/print-money/public/logo-icon.png)",
       "Bash(cp \"/Users/calebmeyer/Downloads/ChatGPT Image Mar 21, 2026, 10_00_50 AM.png\" /Users/calebmeyer/Downloads/print-money/public/logo-full.png)",
       "Bash(cp /Users/calebmeyer/Downloads/logo_icon_transparent.png /Users/calebmeyer/Downloads/print-money/public/logo-icon.png)",
-      "Bash(cp /Users/calebmeyer/Downloads/logo_fixable_transparent.png /Users/calebmeyer/Downloads/print-money/public/logo-full.png)"
+      "Bash(cp /Users/calebmeyer/Downloads/logo_fixable_transparent.png /Users/calebmeyer/Downloads/print-money/public/logo-full.png)",
+      "Bash(git config:*)"
     ]
   }
 }
