@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -94,7 +95,7 @@ export default function Navbar() {
             ))}
             <a
               href="#contact"
-              className={buttonVariants({ size: "sm" }) + " mt-2 w-full"}
+              className={cn(buttonVariants({ size: "sm" }), "mt-2 w-full")}
               onClick={() => setMobileOpen(false)}
             >
               Get a Free Mockup

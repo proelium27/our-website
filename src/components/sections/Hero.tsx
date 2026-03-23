@@ -52,8 +52,8 @@ export default function Hero() {
               className="mb-10 max-w-xl text-[clamp(1rem,1.8vw,1.125rem)] leading-relaxed"
               style={{ color: "#7B7F8A" }}
             >
-              We design fast, modern websites that build trust, rank on Google,
-              and turn visitors into paying clients.
+              Most WordPress sites load in 3–5 seconds. Ours load in under a
+              second — and Google ranks the faster site.
             </p>
 
             {/* CTAs */}
@@ -133,6 +133,19 @@ export default function Hero() {
             />
             <span className="text-sm font-medium" style={{ color: "#7B7F8A" }}>
               50+ Clients Served
+            </span>
+          </div>
+          <div
+            className="hidden h-4 w-px md:block"
+            style={{ backgroundColor: "#CEC9C8" }}
+          />
+          <div className="flex items-center gap-2">
+            <span
+              className="h-2 w-2 rounded-full"
+              style={{ backgroundColor: "#6B7C98" }}
+            />
+            <span className="text-sm font-medium" style={{ color: "#7B7F8A" }}>
+              No WordPress. Vercel-deployed.
             </span>
           </div>
         </div>

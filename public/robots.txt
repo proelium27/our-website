@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Allow AI crawlers so Fixable content can be cited in AI search results
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://fixable.co/sitemap.xml
