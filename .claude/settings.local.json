@@ -27,7 +27,16 @@
       "Bash(cp \"/Users/calebmeyer/Downloads/ChatGPT Image Mar 21, 2026, 10_00_50 AM.png\" /Users/calebmeyer/Downloads/print-money/public/logo-full.png)",
       "Bash(cp /Users/calebmeyer/Downloads/logo_icon_transparent.png /Users/calebmeyer/Downloads/print-money/public/logo-icon.png)",
       "Bash(cp /Users/calebmeyer/Downloads/logo_fixable_transparent.png /Users/calebmeyer/Downloads/print-money/public/logo-full.png)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(git clone:*)",
+      "Bash(cp -r temp-vercel/skills/web-design-guidelines .claude/skills/)",
+      "Bash(rm -rf temp-vercel)",
+      "Bash(cp -r temp-tob/plugins/ask-questions-if-underspecified .claude/skills/)",
+      "Bash(rm -rf temp-tob)",
+      "Bash(cp -r temp-anthropic/skills/frontend-design .claude/skills/)",
+      "Bash(rm -rf temp-anthropic)",
+      "Bash(mkdir -p /Users/calebmeyer/Downloads/print-money/.claude/skills/product-marketing-context)",
+      "Bash(mv /Users/calebmeyer/Downloads/print-money/.claude/skills/SKILL.md /Users/calebmeyer/Downloads/print-money/.claude/skills/product-marketing-context/SKILL.md)"
     ]
   }
 }
