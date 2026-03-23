@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 
+const FORMSPREE_URL = "https://formspree.io/f/myknqpjq";
+
 const points = [
   "Custom mockup delivered in 3–5 business days",
   "No credit card or commitment required",
@@ -30,35 +32,65 @@ type Fields = {
 
 type Errors = Partial<Record<keyof Fields, string>>;
 
+const emptyFields: Fields = {
+  name: "",
+  business: "",
+  email: "",
+  phone: "",
+  business_type: "",
+};
+
 export default function Contact() {
-  const [fields, setFields] = useState<Fields>({
-    name: "",
-    business: "",
-    email: "",
-    phone: "",
-    business_type: "",
-  });
+  const [fields, setFields] = useState<Fields>(emptyFields);
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [networkError, setNetworkError] = useState(false);
 
   function validate(): Errors {
     const e: Errors = {};
     if (!fields.name.trim()) e.name = "Please enter your name.";
     if (!fields.business.trim()) e.business = "Please enter your business name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email))
-      e.email = "Please enter a valid email address.";
-    if (!fields.business_type) e.business_type = "Please select your business type.";
+      e.email = "Please enter a valid email address (like name@company.com).";
     return e;
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
       return;
     }
-    setSubmitted(true);
+    setLoading(true);
+    setNetworkError(false);
+    try {
+      const body: Record<string, string> = {
+        name: fields.name,
+        business: fields.business,
+        email: fields.email,
+      };
+      if (fields.phone) body.phone = fields.phone;
+      if (fields.business_type) body.business_type = fields.business_type;
+
+      const res = await fetch(FORMSPREE_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+        setFields(emptyFields);
+      } else {
+        setNetworkError(true);
+      }
+    } catch {
+      setNetworkError(true);
+    } finally {
+      setLoading(false);
+    }
   }
 
   function set(key: keyof Fields, val: string) {
@@ -122,14 +154,17 @@ export default function Contact() {
             {submitted ? (
               <div className="flex flex-col items-start gap-4 py-4">
                 <span className="text-3xl">✅</span>
-                <h3 className="text-xl font-bold text-white">You're all set!</h3>
+                <h3 className="text-xl font-bold text-white">You&apos;re all set!</h3>
                 <p className="text-sm leading-relaxed" style={{ color: "#DEDAD9" }}>
-                  We'll have your free mockup ready within 3–5 business days.
+                  We&apos;ll have your free mockup ready within 3–5 business days.
                   Keep an eye on your inbox.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} noValidate aria-label="Get free mockup form">
+                {/* Honeypot — hidden from humans, caught by Formspree spam filter */}
+                <input type="text" name="_gotcha" style={{ display: "none" }} tabIndex={-1} autoComplete="off" />
+
                 <div className="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {/* Name */}
                   <div>
@@ -213,47 +248,58 @@ export default function Contact() {
                 {/* Industry */}
                 <div className="mb-6">
                   <label className="mb-1.5 block text-xs font-semibold text-white/80" htmlFor="field-type">
-                    Type of Business
+                    Type of Business{" "}
+                    <span className="font-normal opacity-50">(optional)</span>
                   </label>
                   <select
                     id="field-type"
                     name="business_type"
                     value={fields.business_type}
                     onChange={(e) => set("business_type", e.target.value)}
-                    className={`${errors.business_type ? inputError : inputNormal} cursor-pointer`}
+                    className={`${inputNormal} cursor-pointer`}
                   >
-                    <option value="" disabled>Select your industry…</option>
+                    <option value="">Select your industry…</option>
                     {industries.map((i) => (
                       <option key={i.value} value={i.value} className="text-foreground">
                         {i.label}
                       </option>
                     ))}
                   </select>
-                  {errors.business_type && (
-                    <p className="mt-1 text-xs text-red-400" role="alert">{errors.business_type}</p>
-                  )}
                 </div>
+
+                {networkError && (
+                  <p className="mb-4 rounded-lg border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-300" role="alert">
+                    Something went wrong. Please try again or email us directly.
+                  </p>
+                )}
 
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-[#E9E6E7]"
+                  disabled={loading}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-[#E9E6E7] disabled:opacity-60 disabled:cursor-not-allowed"
                   style={{ color: "#5E5653" }}
                 >
-                  Get My Free Mockup
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
+                  {loading ? "Sending…" : "Get My Free Mockup"}
+                  {!loading && (
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  )}
                 </button>
+
+                <p className="mt-3 text-center text-xs" style={{ color: "rgba(222,218,217,0.5)" }}>
+                  We&apos;ll never share your information.
+                </p>
               </form>
             )}
           </div>
