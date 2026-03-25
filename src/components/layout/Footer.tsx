@@ -14,8 +14,7 @@ export default function Footer() {
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           {/* Logo + tagline */}
           <div>
-            <Image src="/logo-icon.png" alt="Fixable" width={40} height={40} className="h-10 w-auto" />
-            <p className="mt-2 text-xl font-semibold tracking-tight text-white">fixable</p>
+            <Image src="/logo-full.png" alt="Fixable" width={100} height={100} className="h-16 w-auto" />
             <p className="mt-2 max-w-xs text-sm" style={{ color: "#AB978C" }}>
               Brand and web design that actually converts.
             </p>

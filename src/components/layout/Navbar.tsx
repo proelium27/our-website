@@ -31,11 +31,8 @@ export default function Navbar() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2.5">
-          <div style={{ width: 48, height: 48, overflow: "hidden", position: "relative" }}>
-            <Image src="/logo-icon.png" alt="Fixable" fill style={{ objectFit: "cover", objectPosition: "center", transform: "scale(1.55)", filter: "none" }} />
-          </div>
-          <span className="text-xl font-semibold tracking-tight text-foreground leading-none">fixable</span>
+        <a href="/" className="flex items-center">
+          <Image src="/logo-full.png" alt="Fixable" width={120} height={120} className="h-12 w-auto" />
         </a>
 
         {/* Desktop nav */}
