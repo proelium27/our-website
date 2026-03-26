@@ -2,7 +2,6 @@ import Image from "next/image";
 
 const footerLinks = [
   { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
   { label: "Pricing", href: "#pricing" },
   { label: "Contact", href: "#contact" },
 ];
@@ -14,12 +13,28 @@ export default function Footer() {
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">
           {/* Logo + tagline */}
           <div>
-            <Image src="/logo-icon.png" alt="Fixable" width={40} height={40} className="h-10 w-auto" />
+            <Image src="/logo-icon.png" alt="Fixable" width={40} height={31} style={{ objectFit: "cover", objectPosition: "top" }} />
             <p className="mt-2 text-xl font-semibold tracking-tight text-white">fixable</p>
             <p className="mt-2 max-w-xs text-sm" style={{ color: "#AB978C" }}>
               Brand and web design that actually converts.
             </p>
           </div>
+
+          {/* NAP — visible for local SEO */}
+          <address
+            className="not-italic flex flex-col gap-1.5 text-sm"
+            style={{ color: "#AB978C" }}
+          >
+            <span>Bethesda, MD</span>
+            <span>Serving DC, Maryland &amp; Virginia</span>
+            <a
+              href="mailto:hello@fixable.co"
+              className="transition-colors hover:text-white"
+              style={{ color: "#AB978C" }}
+            >
+              hello@fixable.co
+            </a>
+          </address>
 
           {/* Nav links */}
           <nav className="flex flex-col gap-3 md:items-end">
