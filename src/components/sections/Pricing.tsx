@@ -3,6 +3,7 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { FadeInUp } from "@/components/ui/fade-in-up";
+import { TiltCard } from "@/components/ui/tilt-card";
 
 const plans = [
   {
@@ -76,9 +77,10 @@ export default function Pricing() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {plans.map((plan, i) => (
             <FadeInUp key={plan.name} delay={i * 0.15}>
+              <TiltCard className="h-full">
               <div
                 className={cn(
-                  "relative flex flex-col rounded-xl border p-8 transition-transform h-full",
+                  "relative flex flex-col rounded-xl border p-8 h-full",
                   plan.featured
                     ? "scale-[1.02] border-accent bg-white shadow-md"
                     : "border-border bg-white/60"
@@ -152,6 +154,7 @@ export default function Pricing() {
                   </a>
                 </div>
               </div>
+              </TiltCard>
             </FadeInUp>
           ))}
         </div>

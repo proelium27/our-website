@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FadeInUp } from "@/components/ui/fade-in-up";
+import { MagneticWrapper } from "@/components/ui/magnetic";
 
 const FORMSPREE_URL = "https://formspree.io/f/myknqpjq";
 
@@ -280,10 +281,11 @@ export default function Contact() {
                     </p>
                   )}
 
+                  <MagneticWrapper>
                   <button
                     type="submit"
                     disabled={loading}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold transition-colors hover:bg-[#FAF8F5] disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-semibold transition-all hover:bg-[#FAF8F5] hover:shadow-[0_4px_16px_rgba(255,255,255,0.15)] disabled:opacity-60 disabled:cursor-not-allowed"
                     style={{ color: "#5E5653" }}
                   >
                     {loading ? "Sending…" : "Get My Free Mockup"}
@@ -303,6 +305,7 @@ export default function Contact() {
                       </svg>
                     )}
                   </button>
+                  </MagneticWrapper>
 
                   <p className="mt-3 text-center text-xs" style={{ color: "rgba(222,218,217,0.5)" }}>
                     We&apos;ll never share your information.

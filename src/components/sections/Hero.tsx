@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { MagneticWrapper } from "@/components/ui/magnetic";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 
@@ -92,15 +93,17 @@ export default function Hero() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-3">
-            <a
-              href="#contact"
-              className={cn(
-                buttonVariants({ size: "default" }),
-                "px-6 py-2.5 text-sm font-semibold"
-              )}
-            >
-              Get a Free Mockup
-            </a>
+            <MagneticWrapper>
+              <a
+                href="#contact"
+                className={cn(
+                  buttonVariants({ size: "default" }),
+                  "px-6 py-2.5 text-sm font-semibold"
+                )}
+              >
+                Get a Free Mockup
+              </a>
+            </MagneticWrapper>
             <a
               href="#services"
               className={cn(
