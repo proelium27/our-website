@@ -1,3 +1,7 @@
+"use client";
+
+import { FadeInUp } from "@/components/ui/fade-in-up";
+
 type Service = {
   icon: React.ReactNode;
   title: string;
@@ -62,6 +66,21 @@ function ShieldCheckIcon() {
   );
 }
 
+const differentiators = [
+  {
+    label: "Not WordPress",
+    detail: "Vercel-deployed. Loads in under a second. No plugins to hack, no updates to miss.",
+  },
+  {
+    label: "Two developers, every project",
+    detail: "You work directly with the people building your site — no account managers, no handoffs.",
+  },
+  {
+    label: "Transparent pricing",
+    detail: "Every price is published. No sales call required to find out what it costs.",
+  },
+];
+
 const services: Service[] = [
   {
     icon: <MonitorIcon />,
@@ -93,37 +112,58 @@ export default function Services() {
             className="mb-3 text-xs font-semibold uppercase tracking-widest"
             style={{ color: "#6B7C98" }}
           >
-            What We Do
+            Services
           </p>
-          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight tracking-tight text-foreground">
-            Everything You Need
+          <h2 className="text-balance [font-family:var(--font-display)] text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight tracking-tight text-foreground">
+            Three Services.
             <br />
-            to Win Online
+            One Team Behind All of It.
           </h2>
           <p className="mt-4 text-base leading-relaxed" style={{ color: "#7B7F8A" }}>
-            We handle the full picture — from design to the technical details
-            that get you found and chosen.
+            Design, SEO, and ongoing maintenance — handled by the same two
+            people who built your site.
           </p>
         </div>
 
         {/* Cards */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {services.map((s) => (
-            <div
-              key={s.title}
-              className="rounded-xl border border-border bg-white/60 p-8"
-            >
-              <div className="mb-5">{s.icon}</div>
-              <h3
-                className="mb-3 text-lg font-semibold tracking-tight"
-                style={{ color: "#5E5653" }}
-              >
-                {s.title}
-              </h3>
-              <p className="text-sm leading-relaxed" style={{ color: "#7B7F8A" }}>
-                {s.description}
+          {services.map((s, i) => (
+            <FadeInUp key={s.title} delay={i * 0.15}>
+              <div className="rounded-xl border border-border bg-white/60 p-8 h-full">
+                <div className="mb-5 flex items-start justify-between">
+                  {s.icon}
+                  <span
+                    className="text-xs font-semibold tabular-nums"
+                    style={{ color: "#CEC9C8" }}
+                  >
+                    0{i + 1}
+                  </span>
+                </div>
+                <h3
+                  className="mb-3 text-lg font-semibold tracking-tight"
+                  style={{ color: "#5E5653" }}
+                >
+                  {s.title}
+                </h3>
+                <p className="text-sm leading-relaxed" style={{ color: "#7B7F8A" }}>
+                  {s.description}
+                </p>
+              </div>
+            </FadeInUp>
+          ))}
+        </div>
+
+        {/* Differentiator strip */}
+        <div className="mt-14 grid grid-cols-1 gap-4 border-t border-border pt-10 sm:grid-cols-3">
+          {differentiators.map((item, i) => (
+            <FadeInUp key={item.label} delay={i * 0.1}>
+              <p className="mb-1 text-sm font-semibold" style={{ color: "#5E5653" }}>
+                {item.label}
               </p>
-            </div>
+              <p className="text-sm leading-relaxed" style={{ color: "#7B7F8A" }}>
+                {item.detail}
+              </p>
+            </FadeInUp>
           ))}
         </div>
       </div>

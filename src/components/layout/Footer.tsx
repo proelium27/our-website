@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 
-const footerLinks = [
+const anchorLinks = [
   { label: "Services", href: "#services" },
   { label: "Pricing", href: "#pricing" },
   { label: "Contact", href: "#contact" },
@@ -38,7 +39,7 @@ export default function Footer() {
 
           {/* Nav links */}
           <nav className="flex flex-col gap-3 md:items-end">
-            {footerLinks.map((link) => (
+            {anchorLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
@@ -48,6 +49,13 @@ export default function Footer() {
                 {link.label}
               </a>
             ))}
+            <Link
+              href="/privacy"
+              className="text-sm transition-colors hover:text-white"
+              style={{ color: "#AB978C" }}
+            >
+              Privacy Policy
+            </Link>
           </nav>
         </div>
 

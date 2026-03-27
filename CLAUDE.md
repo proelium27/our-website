@@ -26,7 +26,6 @@ The site uses a warm taupe/slate color palette. Always respect these CSS variabl
 --radius: 12px
 --radius-sm: 8px
 --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1)
---font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
 ```
 
 ## Coding Rules
@@ -38,7 +37,6 @@ The site uses a warm taupe/slate color palette. Always respect these CSS variabl
 - **Mobile first** — all changes must be responsive, breakpoints at 640px, 768px, 900px, 1024px
 - **Accessibility** — maintain ARIA labels, semantic HTML, and keyboard navigation already in place
 - **No inline styles** — use CSS classes and variables, not inline style attributes
-- **Sanitize user input** — the `sanitize()` function already exists in the JS, use it
 - **Never expose API keys** — the site is static; any future API calls must go through a backend or serverless function
 
 ## Deployment Workflow
@@ -50,17 +48,6 @@ Claude Code does NOT deploy directly. The workflow is:
 3. Vercel auto-deploys from GitHub
 
 Never run `vercel deploy` or `vercel login`. Never push to git without explicit user approval.
-
-## Pre-Launch Checklist
-
-These items are known and need to be fixed before launch:
-
-- [ ] Wire up the contact form (use Formspree — swap `form` action URL)
-- [ ] Fix footer copyright year: `© 2025` → `© 2026`
-- [ ] Update social proof ("50+ Clients Served") to reflect reality
-- [ ] Add a favicon
-- [ ] Replace portfolio placeholder gray boxes with real mockup screenshots
-- [ ] Add a privacy policy page
 
 ## Available Skills
 
@@ -82,6 +69,8 @@ Always check for a relevant skill before starting a task. Skills are in `.claude
 | Writing follow-up emails for mockup leads | `email-sequence` |
 | Revisiting pricing tiers | `pricing-strategy` |
 | Request is vague or has multiple interpretations | `ask-questions-if-underspecified` |
+| Writing, reviewing, or refactoring React/Next.js code | `react-best-practices` |
+| Adding animations, scroll effects, transitions, hover effects, or anything that moves | `scroll-animations` |
 
 ### Important: Marketing context first
 

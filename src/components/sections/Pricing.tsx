@@ -2,12 +2,13 @@
 
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { FadeInUp } from "@/components/ui/fade-in-up";
 
 const plans = [
   {
     name: "Starter",
-    price: "$499",
-    description: "Perfect for getting a professional web presence up and running fast.",
+    price: "$699",
+    description: "You need a real website — not a Wix template. This gets you online fast, with a site you're proud to hand out with your business card.",
     features: [
       "3-page website",
       "Mobile responsive design",
@@ -20,8 +21,8 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "$999",
-    description: "For businesses ready to compete online and start generating inbound leads.",
+    price: "$1,299",
+    description: "The most popular choice for local service businesses. Enough pages to tell your full story, plus the SEO foundation to start showing up when customers search.",
     features: [
       "5-page website",
       "Advanced SEO setup",
@@ -35,8 +36,8 @@ const plans = [
   },
   {
     name: "Premium",
-    price: "$1,999",
-    description: "The full-service package for ambitious businesses that want it all.",
+    price: "$2,499",
+    description: "For businesses with more to say — multiple locations, service pages, or a booking flow. Everything we offer, built to scale with you.",
     features: [
       "8+ page website",
       "Full SEO strategy & implementation",
@@ -62,7 +63,7 @@ export default function Pricing() {
           >
             Pricing
           </p>
-          <h2 className="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight tracking-tight text-foreground">
+          <h2 className="text-balance [font-family:var(--font-display)] text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-tight tracking-tight text-foreground">
             Simple, Transparent Pricing
           </h2>
           <p className="mt-4 text-base leading-relaxed" style={{ color: "#7B7F8A" }}>
@@ -73,83 +74,85 @@ export default function Pricing() {
 
         {/* Cards */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={cn(
-                "relative flex flex-col rounded-xl border p-8",
-                plan.featured
-                  ? "border-accent bg-white shadow-sm"
-                  : "border-border bg-white/60"
-              )}
-            >
-              {plan.featured && (
-                <div className="absolute -top-3 left-8">
-                  <span
-                    className="rounded-full px-3 py-1 text-xs font-semibold text-white"
-                    style={{ backgroundColor: "#6B7C98" }}
-                  >
-                    Most Popular
-                  </span>
-                </div>
-              )}
-
-              {/* Tier + price */}
-              <div className="mb-6">
-                <p
-                  className="mb-3 text-sm font-semibold uppercase tracking-widest"
-                  style={{ color: "#7B7F8A" }}
-                >
-                  {plan.name}
-                </p>
-                <div className="flex items-baseline gap-1">
-                  <span
-                    className="text-4xl font-extrabold tracking-tight"
-                    style={{ color: "#5E5653" }}
-                  >
-                    {plan.price}
-                  </span>
-                </div>
-                <p className="mt-1 text-xs" style={{ color: "#7B7F8A" }}>
-                  one-time payment
-                </p>
-              </div>
-
-              <p className="mb-6 text-sm leading-relaxed" style={{ color: "#7B7F8A" }}>
-                {plan.description}
-              </p>
-
-              {/* Features */}
-              <ul className="mb-8 flex flex-col gap-2.5">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-2.5 text-sm" style={{ color: "#5E5653" }}>
+          {plans.map((plan, i) => (
+            <FadeInUp key={plan.name} delay={i * 0.15}>
+              <div
+                className={cn(
+                  "relative flex flex-col rounded-xl border p-8 transition-transform h-full",
+                  plan.featured
+                    ? "scale-[1.02] border-accent bg-white shadow-md"
+                    : "border-border bg-white/60"
+                )}
+              >
+                {plan.featured && (
+                  <div className="absolute -top-3 left-8">
                     <span
-                      className="mt-0.5 shrink-0 text-xs font-bold"
-                      style={{ color: "#6B7C98" }}
+                      className="rounded-full px-3 py-1 text-xs font-semibold text-white"
+                      style={{ backgroundColor: "#6B7C98" }}
                     >
-                      ✓
+                      Most Popular
                     </span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
+                  </div>
+                )}
 
-              {/* CTA — pushed to bottom */}
-              <div className="mt-auto">
-                <a
-                  href="#contact"
-                  className={cn(
-                    buttonVariants({
-                      variant: plan.featured ? "default" : "outline",
-                      size: "default",
-                    }),
-                    "w-full justify-center text-sm font-semibold"
-                  )}
-                >
-                  {plan.cta}
-                </a>
+                {/* Tier + price */}
+                <div className="mb-6">
+                  <p
+                    className="mb-3 text-sm font-semibold uppercase tracking-widest"
+                    style={{ color: "#7B7F8A" }}
+                  >
+                    {plan.name}
+                  </p>
+                  <div className="flex items-baseline gap-1">
+                    <span
+                      className="text-4xl font-extrabold tracking-tight"
+                      style={{ color: "#5E5653" }}
+                    >
+                      {plan.price}
+                    </span>
+                  </div>
+                  <p className="mt-1 text-xs" style={{ color: "#7B7F8A" }}>
+                    one-time payment
+                  </p>
+                </div>
+
+                <p className="mb-6 text-sm leading-relaxed" style={{ color: "#7B7F8A" }}>
+                  {plan.description}
+                </p>
+
+                {/* Features */}
+                <ul className="mb-8 flex flex-col gap-2.5">
+                  {plan.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2.5 text-sm" style={{ color: "#5E5653" }}>
+                      <span
+                        className="mt-0.5 shrink-0 text-xs font-bold"
+                        style={{ color: "#6B7C98" }}
+                      >
+                        ✓
+                      </span>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* CTA — pushed to bottom */}
+                <div className="mt-auto">
+                  <a
+                    href="#contact"
+                    aria-label={`${plan.cta} — ${plan.name} plan`}
+                    className={cn(
+                      buttonVariants({
+                        variant: plan.featured ? "default" : "outline",
+                        size: "default",
+                      }),
+                      "w-full justify-center text-sm font-semibold"
+                    )}
+                  >
+                    {plan.cta}
+                  </a>
+                </div>
               </div>
-            </div>
+            </FadeInUp>
           ))}
         </div>
 

@@ -1,9 +1,48 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import { SplitText } from "gsap/SplitText";
+
+gsap.registerPlugin(SplitText);
 
 export default function Hero() {
+  const headlineRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    const el = headlineRef.current;
+    if (!el) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const split = new SplitText(el, { type: "lines" });
+
+      // Wrap each line in an overflow:hidden mask
+      split.lines.forEach((line) => {
+        const mask = document.createElement("div");
+        mask.style.overflow = "hidden";
+        line.parentNode?.insertBefore(mask, line);
+        mask.appendChild(line);
+      });
+
+      gsap.from(split.lines, {
+        yPercent: 100,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power3.out",
+      });
+
+      return () => {
+        split.revert();
+      };
+    });
+
+    return () => mm.revert();
+  }, []);
+
   return (
     <section id="hero" className="relative overflow-hidden">
       {/* Dot grid — pure CSS, no gradients */}
@@ -34,7 +73,10 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="mb-6 text-[clamp(2.25rem,5.5vw,3.75rem)] font-extrabold leading-[1.08] tracking-tight text-foreground">
+          <h1
+            ref={headlineRef}
+            className="mb-6 text-balance [font-family:var(--font-display)] text-[clamp(2.25rem,5.5vw,3.75rem)] font-extrabold leading-[1.08] tracking-tight text-foreground"
+          >
             Your Website Should Be Your{" "}
             <span style={{ color: "#6B7C98" }}>Best Salesperson</span>
           </h1>
@@ -51,24 +93,38 @@ export default function Hero() {
           {/* CTAs */}
           <div className="flex flex-wrap gap-3">
             <a
-              href="#services"
+              href="#contact"
               className={cn(
                 buttonVariants({ size: "default" }),
                 "px-6 py-2.5 text-sm font-semibold"
               )}
             >
-              See Our Services
+              Get a Free Mockup
             </a>
             <a
-              href="#contact"
+              href="#services"
               className={cn(
                 buttonVariants({ variant: "outline", size: "default" }),
                 "px-6 py-2.5 text-sm font-semibold"
               )}
             >
-              Get a Free Mockup
+              See How It Works
             </a>
           </div>
+
+          {/* Live demo proof link */}
+          <p className="mt-5 text-sm" style={{ color: "#7B7F8A" }}>
+            Want to see the quality first?{" "}
+            <a
+              href="https://hvac-mockup.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium underline underline-offset-2 transition-colors hover:text-foreground"
+              style={{ color: "#6B7C98" }}
+            >
+              View a live example →
+            </a>
+          </p>
         </div>
       </div>
     </section>

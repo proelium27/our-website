@@ -3,6 +3,8 @@ import { Inter, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import LenisProvider from "@/components/providers/LenisProvider";
+import MotionProvider from "@/components/providers/MotionProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
@@ -147,10 +149,14 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <Navbar />
-        {children}
-        <Footer />
-        <SpeedInsights />
+        <LenisProvider>
+          <MotionProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <SpeedInsights />
+          </MotionProvider>
+        </LenisProvider>
       </body>
     </html>
   );

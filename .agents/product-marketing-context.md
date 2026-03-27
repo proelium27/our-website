@@ -111,12 +111,12 @@ Strategy: niche landing pages capture high-intent search traffic without the lim
 ## Pricing (published — key differentiator)
  
 ### Build Fee (one-time)
-| Site Size | Price Range |
-|-----------|-------------|
-| Small (1–4 pages) | $600 – $1,000 |
-| Medium (5–8 pages) | $1,200 – $2,000 |
-| Large (9–15 pages) | $2,200 – $3,500 |
-| Custom / E-commerce | Starting at $4,000 |
+| Tier | Pages | Price |
+|------|-------|-------|
+| Starter | 3-page | $699 |
+| Growth | 5-page | $1,299 |
+| Premium | 8+ page | $2,499 |
+| Custom / E-commerce | 9–15 pages | Starting at $4,000 |
  
 ### Monthly Retainer (optional, after launch)
 | Plan | Price | Includes |

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,21 +13,51 @@ const navLinks = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [enableTransition, setEnableTransition] = useState(false);
+  const lastScrollY = useRef(0);
+  const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 8);
+    prefersReducedMotion.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      const goingDown = currentY > lastScrollY.current;
+
+      setScrolled(currentY > 60);
+
+      if (!prefersReducedMotion.current) {
+        if (goingDown && currentY > 80) {
+          setHidden(true);
+          setMobileOpen(false);
+        } else if (!goingDown) {
+          setHidden(false);
+        }
+      }
+
+      lastScrollY.current = currentY;
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // Enable transitions after mount to prevent flash on initial load
+    requestAnimationFrame(() => setEnableTransition(true));
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-200 ${
+      className={cn(
+        "fixed top-0 left-0 z-50 w-full",
+        enableTransition && hidden && "transition-transform duration-300 -translate-y-full",
         scrolled
-          ? "border-b border-border bg-background/95 backdrop-blur-sm"
+          ? "backdrop-blur-[12px] bg-background/80 border-b border-border"
           : "bg-transparent"
-      }`}
+      )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         {/* Logo */}
