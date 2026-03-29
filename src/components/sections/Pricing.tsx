@@ -5,7 +5,17 @@ import { cn } from "@/lib/utils";
 import { FadeInUp } from "@/components/ui/fade-in-up";
 import { TiltCard } from "@/components/ui/tilt-card";
 
-const plans = [
+type Plan = {
+  name: string;
+  price: string;
+  originalPrice?: string;
+  description: string;
+  features: string[];
+  featured: boolean;
+  cta: string;
+};
+
+const plans: Plan[] = [
   {
     name: "Starter",
     price: "$699",
@@ -22,7 +32,8 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "$1,299",
+    price: "$799",
+    originalPrice: "$1,299",
     description: "The most popular choice for local service businesses. Enough pages to tell your full story, plus the SEO foundation to start showing up when customers search.",
     features: [
       "5-page website",
@@ -37,7 +48,8 @@ const plans = [
   },
   {
     name: "Premium",
-    price: "$2,499",
+    price: "$999",
+    originalPrice: "$2,499",
     description: "For businesses with more to say — multiple locations, service pages, or a booking flow. Everything we offer, built to scale with you.",
     features: [
       "8+ page website",
@@ -73,6 +85,17 @@ export default function Pricing() {
           </p>
         </div>
 
+        {/* Launch promo banner */}
+        <div className="mb-10 inline-flex items-center gap-2 rounded-full border border-accent/25 bg-accent/10 px-4 py-2">
+          <span
+            className="h-1.5 w-1.5 shrink-0 rounded-full"
+            style={{ backgroundColor: "#6B7C98" }}
+          />
+          <p className="text-xs font-semibold" style={{ color: "#6B7C98" }}>
+            Launch pricing — all sites under $1,000 while we&apos;re getting started.
+          </p>
+        </div>
+
         {/* Cards */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {plans.map((plan, i) => (
@@ -105,7 +128,15 @@ export default function Pricing() {
                   >
                     {plan.name}
                   </p>
-                  <div className="flex items-baseline gap-1">
+                  <div className="flex items-baseline gap-2">
+                    {plan.originalPrice && (
+                      <span
+                        className="text-xl font-medium line-through"
+                        style={{ color: "#B0AAA8" }}
+                      >
+                        {plan.originalPrice}
+                      </span>
+                    )}
                     <span
                       className="text-4xl font-extrabold tracking-tight"
                       style={{ color: "#5E5653" }}

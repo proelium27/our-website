@@ -29,8 +29,13 @@ export default function Hero() {
         mask.appendChild(line);
       });
 
-      gsap.from(split.lines, {
-        yPercent: 100,
+      // Set lines behind mask first, then reveal the element —
+      // prevents text flashing visible before GSAP can position it
+      gsap.set(split.lines, { yPercent: 100 });
+      gsap.set(el, { opacity: 1 });
+
+      gsap.to(split.lines, {
+        yPercent: 0,
         duration: 0.8,
         stagger: 0.1,
         ease: "power3.out",
@@ -39,6 +44,11 @@ export default function Hero() {
       return () => {
         split.revert();
       };
+    });
+
+    // Show immediately when reduced motion is preferred
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      gsap.set(el, { opacity: 1 });
     });
 
     return () => mm.revert();
@@ -76,7 +86,7 @@ export default function Hero() {
           {/* Headline */}
           <h1
             ref={headlineRef}
-            className="mb-6 text-balance [font-family:var(--font-display)] text-[clamp(2.25rem,5.5vw,3.75rem)] font-extrabold leading-[1.08] tracking-tight text-foreground"
+            className="opacity-0 mb-6 text-balance [font-family:var(--font-display)] text-[clamp(2.25rem,5.5vw,3.75rem)] font-extrabold leading-[1.08] tracking-tight text-foreground"
           >
             Your Website Should Be Your{" "}
             <span style={{ color: "#6B7C98" }}>Best Salesperson</span>
