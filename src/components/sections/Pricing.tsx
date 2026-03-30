@@ -194,7 +194,7 @@ export default function Pricing() {
         <p className="mt-10 text-sm" style={{ color: "#7B7F8A" }}>
           Need ongoing support?{" "}
           <strong style={{ color: "#5E5653" }}>
-            Add monthly maintenance starting at $99/mo
+            Add monthly maintenance starting at $70/mo
           </strong>{" "}
           — includes updates, backups, security monitoring, and 1 hour of
           content edits per month.

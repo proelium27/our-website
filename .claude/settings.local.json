@@ -67,7 +67,25 @@
       "Bash(git commit:*)",
       "Bash(git push:*)",
       "Bash(grep -r \"logo-icon-only\\\\|logo-icon\\\\|icon.png\\\\|apple-icon\" /Users/calebmeyer/Downloads/print-money --include=*.json --include=*.tsx --include=*.ts)",
-      "Bash(curl -s https://ipv4.icanhazip.com)"
+      "Bash(curl -s https://ipv4.icanhazip.com)",
+      "Bash(ls -lt ~/.claude/projects/-Users-calebmeyer-Downloads-print-money/*.jsonl)",
+      "Bash(sort -k4)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(git pull:*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "lsof -ti:3000 > /dev/null 2>&1 || npm run dev",
+            "statusMessage": "Starting dev server...",
+            "async": true
+          }
+        ]
+      }
     ]
   }
 }

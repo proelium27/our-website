@@ -29,11 +29,18 @@ export default function Footer() {
             <span>Bethesda, MD</span>
             <span>Serving DC, Maryland &amp; Virginia</span>
             <a
-              href="mailto:hello@fixable.co"
+              href="mailto:calebm27@icloud.com"
               className="transition-colors hover:text-white"
               style={{ color: "#AB978C" }}
             >
-              hello@fixable.co
+              calebm27@icloud.com
+            </a>
+            <a
+              href="tel:+13016487291"
+              className="transition-colors hover:text-white"
+              style={{ color: "#AB978C" }}
+            >
+              (301) 648-7291
             </a>
           </address>
 
