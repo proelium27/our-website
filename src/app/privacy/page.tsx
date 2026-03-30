@@ -111,11 +111,11 @@ export default function PrivacyPage() {
             You may request access to, correction of, or deletion of your personal information at
             any time by emailing us at{" "}
             <a
-              href="mailto:hello@fixable.co"
+              href="mailto:calebm27@icloud.com"
               className="underline transition-colors hover:text-[#6B7C98]"
               style={{ color: "#5E5653" }}
             >
-              hello@fixable.co
+              calebm27@icloud.com
             </a>
             . We will respond within a reasonable timeframe.
           </p>
@@ -128,11 +128,11 @@ export default function PrivacyPage() {
           <p style={{ color: "#7B7F8A" }}>
             Questions about this policy? Reach us at{" "}
             <a
-              href="mailto:hello@fixable.co"
+              href="mailto:calebm27@icloud.com"
               className="underline transition-colors hover:text-[#6B7C98]"
               style={{ color: "#5E5653" }}
             >
-              hello@fixable.co
+              calebm27@icloud.com
             </a>
             .
           </p>
